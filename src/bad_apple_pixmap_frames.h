@@ -6576,6 +6576,7 @@
 
 static const int NUM_FRAMES = 4572;
 static const int FRAME_HEIGHT = 720;
+static const int FRAME_WIDTH = 960;
 
 static const char* bad_apple_frames[4572][720] = {
     frame0001,
