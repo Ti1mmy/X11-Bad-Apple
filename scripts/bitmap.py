@@ -39,7 +39,7 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
         out.write("#include <vector>\n\n")
         # Define the pixmap
         # We need to provide space for the null terminator (hence the width + 1)
-        out.write(f'static const std::vector<const std::string> = ' + '{\n')
+        out.write(f'static const std::vector<std::string> = ' + '{\n')
         for horizontal_line in pixelated_img.data:
             line = []
             for pixel in horizontal_line:

@@ -33,7 +33,7 @@ def main():
         for image in IMAGES:
             f.write(f'#include "frames/display/{image.split(".")[0]}_pixmap.h"\n')
         f.write("\n")
-        f.write("static const std::vector<std::vector<const std::string>> bad_apple_frames = {\n")
+        f.write("static const std::vector<std::vector<std::string>> bad_apple_frames = {\n")
         for image in IMAGES:
             f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")
