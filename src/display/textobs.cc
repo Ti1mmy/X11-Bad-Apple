@@ -7,6 +7,6 @@ TextObserver::TextObserver(VideoStudio *v): v{v} {
 }
 TextObserver::~TextObserver() { v->detach(this); }
 
-TextObserver::notify() {
+void TextObserver::notify() {
     out << "Display Frame: " << v->getFrameNum() << endl;
 }

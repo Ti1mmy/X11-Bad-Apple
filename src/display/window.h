@@ -3,11 +3,10 @@
 #include <X11/Xlib.h>
 #include <iostream>
 #include <string>
-#include <memory>
 #include <vector>
 
 class Xwindow {
-  std::unique_ptr<Display> d;
+  Display *d;
   Window w;
   int s;
   GC gc;
@@ -24,7 +23,7 @@ class Xwindow {
 
   // Draws a bitmap
   // [This thing is fast] - Whenever draw calls need to be done, they should ideally be using this
-  void drawFrame(std::vector<const std::string> frame);
+  void drawFrame(const std::vector<std::string>& frame);
 
 };
 

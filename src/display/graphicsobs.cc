@@ -2,10 +2,10 @@
 
 using namespace std;
 
-GraphicsObs::GraphicsObs(VideoStudio *v, int width, int height): v{v}, width{width}, height{height} {
+GraphicsObs::GraphicsObs(VideoStudio *v, int width, int height): v{v}, frameWidth{width}, frameHeight{height} {
     v->attach(this);
 }
 
 GraphicsObs::~GraphicsObs() { v->detach(this); }
 
-GraphicsObs::notify() { graphicWindow->drawFrame(v->getCurrentFrame()); }
+void GraphicsObs::notify() { graphicWindow->drawFrame(v->getState()); }

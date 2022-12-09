@@ -4,6 +4,6 @@ using namespace std;
 
 VideoStudio::VideoStudio(Video* v): video{v} {}
 
-int VideoStudio::getFrameNum() { return video->frameNum(); }
+int VideoStudio::getFrameNum() const { return video->frameNum(); }
 
-const vector<string> &getCurrentFrame() { return video->getCurrentFrame(); }
+const vector<string> &VideoStudio::getState() const { return video->getCurrentFrame(); }

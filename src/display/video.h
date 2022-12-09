@@ -5,18 +5,18 @@
 #include <string>
 
 class Video {
-    std::vector<std::vector<const std::string>> frameList;
+    std::vector<std::vector<std::string>> frameList;
     const int frameWidth;
     const int frameHeight;
-    const int currentFrame;
+    int currentFrame;
     public:
-        Video(const &std::vector<std::vector<const std::string>> frames);
+        Video(const std::vector<std::vector<std::string>> &frames);
 
         // getters
         int getFrameWidth() const;
         int getFrameHeight() const;
         int frameNum() const;
-        const std::vector<const std::string>& getCurrentFrame() const;
+        const std::vector<std::string>& getCurrentFrame() const;
 
         // operator overload
         Video& operator++();

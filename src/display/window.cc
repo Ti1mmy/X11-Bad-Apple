@@ -1,10 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////
-// Code originated from Assignment 4 Q4
-// Provided by the CS246 Instructors
-
-// Code has been modified by our team, and modifications have been documented.
-//////////////////////////////////////////////////////////////////////////////
-
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <iostream>
@@ -23,23 +16,23 @@ Xwindow::Xwindow(int width, int height): width{width}, height{height} {
   };
   lastFrame.resize(height, black);
 
-  d = make_unique<Display>(XOpenDisplay(NULL));
+  d = XOpenDisplay(NULL);
   if (d == NULL) {
     cerr << "Cannot open display" << endl;
     exit(1);
   }
-  s = DefaultScreen(d.get());
-  w = XCreateSimpleWindow(d.get(), RootWindow(d.get(), s), 10, 10, width, height, 1,
-                          BlackPixel(d.get(), s), WhitePixel(d.get(), s));
-  XSelectInput(d.get(), w, ExposureMask | KeyPressMask);
-  XMapRaised(d.get(), w);
+  s = DefaultScreen(d);
+  w = XCreateSimpleWindow(d, RootWindow(d, s), 10, 10, width, height, 1,
+                          BlackPixel(d, s), WhitePixel(d, s));
+  XSelectInput(d, w, ExposureMask | KeyPressMask);
+  XMapRaised(d, w);
 
-  Pixmap pix = XCreatePixmap(d.get(), w, width,
-        height, DefaultDepth(d.get(), DefaultScreen(d.get())));
-  gc = XCreateGC(d.get(), pix, 0, (XGCValues *)0);
+  Pixmap pix = XCreatePixmap(d, w, width,
+        height, DefaultDepth(d, DefaultScreen(d)));
+  gc = XCreateGC(d, pix, 0, (XGCValues *)0);
 
-  XFlush(d.get());
-  XFlush(d.get());
+  XFlush(d);
+  XFlush(d);
 
   // Set up colours.
   XColor xcolour;
@@ -52,43 +45,43 @@ Xwindow::Xwindow(int width, int height): width{width}, height{height} {
     "black",
   };
 
-  cmap=DefaultColormap(d.get(), DefaultScreen(d.get()));
+  cmap=DefaultColormap(d, DefaultScreen(d));
 
   colours.resize(color_vals.size());
   // Add colour vals to colours
   for(int i=0; i < (int)color_vals.size(); ++i) {
-      XParseColor(d.get(), cmap,color_vals[i].c_str(), &xcolour);
-      XAllocColor(d.get(), cmap, &xcolour);
+      XParseColor(d, cmap,color_vals[i].c_str(), &xcolour);
+      XAllocColor(d, cmap, &xcolour);
       colours[i] = xcolour.pixel;
   }
 
-  XSetForeground(d.get(), gc, colours[0]);
+  XSetForeground(d, gc, colours[0]);
 
   // Make window non-resizeable.
   XSizeHints hints;
   hints.flags = (USPosition | PSize | PMinSize | PMaxSize );
   hints.height = hints.base_height = hints.min_height = hints.max_height = height;
   hints.width = hints.base_width = hints.min_width = hints.max_width = width;
-  XSetNormalHints(d.get(), w, &hints);
+  XSetNormalHints(d, w, &hints);
 
-  XSynchronize(d.get(), True);
-  XStoreName(d.get(), w, "X11 Bad Apple!!");
+  XSynchronize(d, True);
+  XStoreName(d, w, "X11 Bad Apple!!");
   usleep(1000);
 
   // Make sure we don't race against the Window being shown
   XEvent ev;
   while(1) {
-    XNextEvent(d.get(), &ev);
+    XNextEvent(d, &ev);
     if(ev.type == Expose) break;
   }
 }
 
 Xwindow::~Xwindow() {
-  XFreeGC(d.get(), gc);
-  XCloseDisplay(d.get());
+  XFreeGC(d, gc);
+  XCloseDisplay(d);
 }
 
-void Xwindow:: drawFrame(std::vector<const std::string> frame); {
+void Xwindow::drawFrame(const vector<string>& frame) {
   // Extensively used documentation from this website:
   // https://tronche.com/gui/x/xlib/graphics/XGetImage.html
 
@@ -97,7 +90,7 @@ void Xwindow:: drawFrame(std::vector<const std::string> frame); {
 
   // Sprites are buffered in an XImage class and only displayed once
   // all pixels have been placed onto the XImage.
-  unique_ptr<XImage> image = make_unique<XImage>(XGetImage(d, w, 0, 0, width, height, AllPlanes, 1));
+  XImage* image = XGetImage(d, w, 0, 0, width, height, AllPlanes, 1);
   for (int y = 0; y < height; ++y) {
     for (int x = 0; x < width; ++x) {
       char pixel = frame[y][x];
@@ -107,11 +100,11 @@ void Xwindow:: drawFrame(std::vector<const std::string> frame); {
       lastFrame[y][x] = pixel;
 
       if (pixel == '#') {
-        XPutPixel(image.get(), x, y, colours[0]);
+        XPutPixel(image, x, y, colours[0]);
       } else if (pixel == ' ') {
-        XPutPixel(image.get(), x, y, colours[1]);
+        XPutPixel(image, x, y, colours[1]);
       }
     }
   }
-  XPutImage(d, w, gc, image.get(), 0, 0, 0, 0, numCols, numRows);
+  XPutImage(d, w, gc, image, 0, 0, 0, 0, width, height);
 }

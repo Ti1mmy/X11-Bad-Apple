@@ -13,7 +13,7 @@ class Subject {
         void attach(Observer *o);
         void detach(Observer *o);
         void notifyObservers();
-        virtual std::vector<std::string> getState(Posn &p) const = 0;
+        virtual const std::vector<std::string>& getState() const = 0;
         virtual ~Subject() = default;
 };
 

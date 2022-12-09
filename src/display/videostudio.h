@@ -2,17 +2,18 @@
 #define __VIDEOSTUDIO_H__
 
 #include <memory>
+#include "subject.h"
 #include "video.h"
 
 class Video;
 
 class VideoStudio: public Subject {
-    std::shared_ptr<Video> video;
+    Video* video;
     public:
-        explicit VideoStudio(std::shared_ptr<Video> v);
+        explicit VideoStudio(Video *v);
 
         int getFrameNum() const;
-        const std::vector<std::string>> &getCurrentFrame() const;
+        virtual const std::vector<std::string> &getState() const override;
 };
 
 #endif
