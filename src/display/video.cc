@@ -1,7 +1,7 @@
 #include "video.h"
 using namespace std;
 
-Video::Video(const string frames[][], int width, int height):
+Video::Video(const string frames[][], int numFrames, int height):
             frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < height; ++i) {
                     vector<string> temp;

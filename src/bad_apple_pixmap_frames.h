@@ -6577,7 +6577,10 @@
 #include "display/frames/frame6571_pixmap.h"
 #include "display/frames/frame6572_pixmap.h"
 
-static const std::vector<std::vector<std::string>> bad_apple_frames = {
+static const int NUM_FRAMES = 4572;
+static const int FRAME_HEIGHT = 720;
+
+static const std::string bad_apple_frames[4572][720] = {
     frame0001,
     frame0002,
     frame0003,
