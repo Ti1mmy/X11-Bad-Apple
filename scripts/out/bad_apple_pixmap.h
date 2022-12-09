@@ -6575,6 +6575,7 @@
 #include "frame6572_pixmap.h"
 
 #include <vector>
+#include <string>
 
 static const std::vector<char**> bad_apple_frames = {
     frame0001,
