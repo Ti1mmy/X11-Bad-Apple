@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wno-unused-parameter -Wno-unused-function -Wno-ignored-qualifiers
 CXXFLAGS += -std=c++14 -Wall -Wextra -g -MMD -O0
 PROGRAM = X11BadApple
-# MAKEFLAGS += -j "$(nproc)"
+MAKEFLAGS += -j "$(nproc)"
 
 OBJECTS = $(patsubst %.cc,%.o,$(wildcard **/*.cc)) main.o
 DEPENDS = ${OBJECTS:.o=.d}

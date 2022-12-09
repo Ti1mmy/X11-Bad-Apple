@@ -1,11 +1,11 @@
 #include "bad_apple_pixmap_frames.h"
-#include "video.h"
-#include "graphicsobs.h"
-#include "textobs.h"
-#include "videostudio.h"
+#include "display/video.h"
+#include "display/graphicsobs.h"
+#include "display/textobs.h"
+#include "display/videostudio.h"
 
 #include <memory>
-#include <stdint>
+#include <stdint.h>
 
 using namespace std;
 
