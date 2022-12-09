@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wno-unused-parameter -Wno-unused-function -Wno-ignored-qualifiers
-CXXFLAGS += -std=c++14 -Wall -Wextra -g -MMD -O3
+CXXFLAGS += -std=c++14 -Wall -Wextra -g -MMD -O0
 PROGRAM = X11BadApple
 MAKEFLAGS += -j "$(nproc)"
 

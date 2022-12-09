@@ -1,12 +1,12 @@
 #include "video.h"
 using namespace std;
 
-Video::Video(const string frames[][], int numFrames, int height):
-            frameWidth{width}, frameHeight{height}, currentFrame{0} {
+Video::Video(const string **frames, int numFrames, int height):
+            frameWidth{frames[0][0].length()}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < height; ++i) {
                     vector<string> temp;
-                    temp.resize(width);
-                    for (int j = 0; j < width; ++j) {
+                    temp.resize(frameWidth);
+                    for (int j = 0; j < frameWidth; ++j) {
                         temp[j] = frames[i][j];
                     }
                     frameList.emplace_back(move(temp));
