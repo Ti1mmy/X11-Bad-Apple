@@ -506,7 +506,7 @@ static const int NUM_FRAMES = 500;
 static const int FRAME_HEIGHT = 720;
 static const int FRAME_WIDTH = 960;
 
-static const char bad_apple_frames[500][720][961] = {
+static char bad_apple_frames[500][720][961] = {
     {frame0001},
     {frame0002},
     {frame0003},
@@ -1006,7 +1006,7 @@ static const char bad_apple_frames[500][720][961] = {
     {frame0497},
     {frame0498},
     {frame0499},
-    {frame0500
+    {frame0500}
 };
 
 #endif
