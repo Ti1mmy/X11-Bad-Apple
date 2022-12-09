@@ -1,4 +1,4 @@
-#include "bad_apple_pixmap_frames.h"
+#include "bad_apple_pixmap_frames-min.h"
 #include "display/video.h"
 #include "display/graphicsobs.h"
 #include "display/textobs.h"
