@@ -44,7 +44,7 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
                 pixel_tuple = tuple([int(x) for x in pixel])
                 pixel_colour = palette_dict[pixel_tuple]
                 line.append(pixel_colour)
-            line_str = '\t"' + f'{"".join(line)}' + '",\n'
+            line_str = '\t{"' + f'{"".join(line)}' + '"},\n'
             out.write(line_str)
         out.write('};\n\n')
         out.write('#endif\n')

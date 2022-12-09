@@ -37,7 +37,7 @@ def main():
         f.write("\n")
         f.write(f"static const char bad_apple_frames[{len(IMAGES)}][{PIXELART_RESOLUTION[1]}][{PIXELART_RESOLUTION[0] + 1}] " "= {\n")
         for image in IMAGES:
-            f.write("{" + f"    {image.split('.')[0]}" + "},\n")
+            f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")
         f.write("\n")
         f.write("#endif\n")
