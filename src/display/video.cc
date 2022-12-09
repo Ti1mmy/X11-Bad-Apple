@@ -1,11 +1,15 @@
 #include "video.h"
 using namespace std;
 
-Video::Video(const vector<vector<string>>& frames):
-            frameWidth{frames[0][0].length()}, frameHeight{frames[0].size()}, currentFrame{0} {
-                const int numFrames = frames.size();
-                for (const vector<string> &frame: frames) {
-                    frameList.emplace_back(frame);
+Video::Video(const string frames[][], int width, int height):
+            frameWidth{width}, frameHeight{height}, currentFrame{0} {
+                for (int i = 0; i < height; ++i) {
+                    vector<string> temp;
+                    temp.resize(width);
+                    for (int j = 0; j < width; ++j) {
+                        temp[j] = frames[i][j];
+                    }
+                    frameList.emplace_back(move(temp));
                 }
             }
 

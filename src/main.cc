@@ -15,7 +15,7 @@ int main() {
     unique_ptr<Video> bad_apple = make_unique<Video>(bad_apple_frames);
     unique_ptr<VideoStudio> videoStudio = make_unique<VideoStudio>(bad_apple.get());
     unique_ptr<TextObserver> textObs = make_unique<TextObserver>(videoStudio.get());
-    unique_ptr<GraphicsObserver> graphicsObs = make_unique<GraphicsObserver>(videoStudio.get());
+    unique_ptr<GraphicsObs> graphicsObs = make_unique<GraphicsObs>(videoStudio.get(), bad_apple_frames[0][0].length(), bad_apple_frames[0].size());
     for (uint64_t i = 0; i < frame_count; ++i) {
         videoStudio->notifyObservers();
         ++(*bad_apple);

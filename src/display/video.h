@@ -10,7 +10,7 @@ class Video {
     const int frameHeight;
     int currentFrame;
     public:
-        Video(const std::vector<std::vector<std::string>> &frames);
+        Video(const std::string frames[][], int width, int height);
 
         // getters
         int getFrameWidth() const;
