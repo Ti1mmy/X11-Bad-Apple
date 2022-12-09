@@ -35,7 +35,7 @@ def main():
         f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
         f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[1]};\n")
         f.write("\n")
-        f.write(f"static const char* bad_apple_frames[{len(IMAGES)}][{PIXELART_RESOLUTION[0]}] " "= {\n")
+        f.write(f"static const char bad_apple_frames[{len(IMAGES)}][{PIXELART_RESOLUTION[1]}][{PIXELART_RESOLUTION[0]}] " "= {\n")
         for image in IMAGES:
             f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")
