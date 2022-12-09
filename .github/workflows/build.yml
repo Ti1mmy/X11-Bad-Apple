@@ -1,0 +1,21 @@
+name: Build Project (make)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # Same as on the UW TEACHING server (Environment I am working on)
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./src
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: make
+      run: |
+        make
