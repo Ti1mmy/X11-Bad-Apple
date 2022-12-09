@@ -1,5 +1,5 @@
-#ifndef __BAD_APPLE_PIXMAP__
-#define __BAD_APPLE_PIXMAP__
+#ifndef __BAD_APPLE_PIXMAP_MIN__
+#define __BAD_APPLE_PIXMAP_MIN__
 
 #include "display/frames/frame0001_pixmap.h"
 #include "display/frames/frame0002_pixmap.h"
