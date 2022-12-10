@@ -7,8 +7,8 @@ IMAGES = [f for f in os.listdir(PNG_PATH) if f.split('.')[1] == 'png']
 PIXELART_RESOLUTION = (960, 720)
 PADDING = 0
 PALETTE_dict = {
-    (255, 255, 255): ' ',
-    (0, 0, 0): '#',
+    (255, 255, 255): "Black",
+    (0, 0, 0): 'White',
     # (0, 255, 0): 'Transparent', # Makes transparents portions of the image green
                                   # Note: Won't be used in the final image, nor will it be
                                   # In the final repo
@@ -37,7 +37,7 @@ def main():
         f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
         f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[1]};\n")
         f.write("\n")
-        f.write("static const std::vector<const char**> bad_apple_frames = {\n")
+        f.write("static const std::vector<const colour**> bad_apple_frames = {\n")
         for image in IMAGES:
             f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")

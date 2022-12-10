@@ -41,15 +41,17 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
         out.write(f'#ifndef __{out_filename.upper()}_PIXMAP_H__\n')
         out.write(f'#define __{out_filename.upper()}_PIXMAP_H__\n\n')
         out.write("\n")
+        out.write("#include ../colours.h\n")
+        out.write("\n")
         # Define the pixmap
-        out.write(f'static const char* {out_filename}[{pixelart_resolution[1]}] = ' + '{\n')
+        out.write(f'static const colour* {out_filename}[{pixelart_resolution[1]}] = ' + '{\n')
         for horizontal_line in pixelated_img.data:
             line = []
             for pixel in horizontal_line:
                 pixel_tuple = tuple([int(x) for x in pixel])
                 pixel_colour = palette_dict[pixel_tuple]
                 line.append(pixel_colour)
-            line_str = '\t"' + f'{"".join(line)}' + '",\n'
+            line_str = '\t{' + f'{", ".join(line)}' + '},\n'
             out.write(line_str)
         out.write('};\n\n')
         out.write('#endif\n')
