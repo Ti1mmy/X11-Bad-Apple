@@ -4,7 +4,7 @@ using namespace std;
 Video::Video(const vector<const vector<string>*> &frames, int numFrames, int height, int width):
             frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < numFrames; ++i) {
-                    frameList.emplace_back(frames[i]);
+                    frameList.emplace_back(move(frames[i]));
             }
         }
 
