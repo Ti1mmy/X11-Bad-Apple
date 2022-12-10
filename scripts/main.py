@@ -23,7 +23,7 @@ def main():
         task_pool.close()
         task_pool.join()
     
-    with open("out/bad_apple_pixmap.h", "w") as f:
+    with open("out/bad_apple_pixmap_frames.h", "w") as f:
         f.write("#ifndef __BAD_APPLE_PIXMAP_H__\n")
         f.write("#define __BAD_APPLE_PIXMAP_H__\n")
         f.write("\n")
@@ -31,7 +31,7 @@ def main():
         f.write("#include <vector>\n")
         f.write("\n")
         for image in IMAGES:
-            f.write(f'#include "frames/display/{image.split(".")[0]}_pixmap.h"\n')
+            f.write(f'#include "display/frames/{image.split(".")[0]}_pixmap.h"\n')
         f.write("\n")
         f.write(f"static const int NUM_FRAMES = {len(IMAGES)};\n")
         f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
