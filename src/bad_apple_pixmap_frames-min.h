@@ -505,8 +505,8 @@
 #include "display/frames/frame0500_pixmap.h"
 
 static const int NUM_FRAMES = 500;
-static const int FRAME_HEIGHT = 480;
-static const int FRAME_WIDTH = 360;
+static const int FRAME_HEIGHT = 360;
+static const int FRAME_WIDTH = 480;
 
 static const std::vector<const char**> bad_apple_frames = {
     frame0001,

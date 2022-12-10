@@ -4,6 +4,7 @@ import os
 
 PNG_PATH = './frames'
 IMAGES = [f for f in os.listdir(PNG_PATH) if f.split('.')[1] == 'png']
+#                   (width, height)
 PIXELART_RESOLUTION = (480, 360)
 PADDING = 0
 PALETTE_dict = {
@@ -34,8 +35,8 @@ def main():
             f.write(f'#include "display/frames/{image.split(".")[0]}_pixmap.h"\n')
         f.write("\n")
         f.write(f"static const int NUM_FRAMES = {len(IMAGES)};\n")
-        f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
-        f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[1]};\n")
+        f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[1]};\n")
+        f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[0]};\n")
         f.write("\n")
         f.write("static const std::vector<const char**> bad_apple_frames = {\n")
         for image in IMAGES:
