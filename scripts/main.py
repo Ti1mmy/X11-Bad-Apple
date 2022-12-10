@@ -4,7 +4,7 @@ import os
 
 PNG_PATH = './frames'
 IMAGES = [f for f in os.listdir(PNG_PATH) if f.split('.')[1] == 'png']
-PIXELART_RESOLUTION = (960, 720)
+PIXELART_RESOLUTION = (480, 360)
 PADDING = 0
 PALETTE_dict = {
     (255, 255, 255): ' ',
