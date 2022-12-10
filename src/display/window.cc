@@ -10,12 +10,10 @@
 using namespace std;
 
 Xwindow::Xwindow(int width, int height): width{width}, height{height} {
-  cout << "Drawing Window" << endl;
   string black = "";
   for (int i = 0; i < width; ++i) {
     black += '#';
   };
-  cout << black << endl;
   lastFrame.resize(height, black);
 
   d = XOpenDisplay(NULL);
