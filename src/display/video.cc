@@ -2,7 +2,7 @@
 using namespace std;
 
 Video::Video(const vector<const char**>& frames, int numFrames, int height, int width):
-            frameHeight{height}, frameWidth{width}, currentFrame{0} {
+            frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < numFrames; ++i) {
                     vector<string> temp;
                     for (int j = 0; j < height; ++j) {
