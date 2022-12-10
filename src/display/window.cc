@@ -107,4 +107,5 @@ void Xwindow::drawFrame(const vector<string>& frame) {
     }
   }
   XPutImage(d, w, gc, image, 0, 0, 0, 0, width, height);
+  delete image;
 }
