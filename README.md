@@ -2,6 +2,7 @@
 Bad Apple!! using X11 Graphics. Written in C++
 
 ## Demo (Realtime)
+![Demp](./demo.gif)
 
 ## Usage
 
