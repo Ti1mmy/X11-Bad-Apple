@@ -9,9 +9,9 @@ PADDING = 0
 PALETTE_dict = {
     (255, 255, 255): ' ',
     (0, 0, 0): '#',
-    (0, 255, 0): 'Transparent', # Makes transparents portions of the image green
-                                # Note: Won't be used in the final image, nor will it be
-                                # In the final repo
+    # (0, 255, 0): 'Transparent', # Makes transparents portions of the image green
+                                  # Note: Won't be used in the final image, nor will it be
+                                  # In the final repo
 }
 
 # We will thread all of our image calls to make_bitmap to run at once
