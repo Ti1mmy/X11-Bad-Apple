@@ -10,10 +10,8 @@
 using namespace std;
 
 Xwindow::Xwindow(int width, int height): width{width}, height{height} {
-  string black = "";
-  for (int i = 0; i < width; ++i) {
-    black += '#';
-  };
+  vector<colour> black;
+  black.resize(width, B);
   lastFrame.resize(height, black);
 
   d = XOpenDisplay(NULL);
@@ -41,8 +39,8 @@ Xwindow::Xwindow(int width, int height): width{width}, height{height} {
   // https://www.w3schools.com/colors/colors_x11.asp
 
   vector<string> color_vals {
-    "white",
     "black",
+    "white",
   };
 
   cmap=DefaultColormap(d, DefaultScreen(d));
@@ -81,7 +79,7 @@ Xwindow::~Xwindow() {
   XCloseDisplay(d);
 }
 
-void Xwindow::drawFrame(const vector<string>& frame) {
+void Xwindow::drawFrame(const vector<vector<colour>>& frame) {
   // Extensively used documentation from this website:
   // https://tronche.com/gui/x/xlib/graphics/XGetImage.html
 
@@ -93,17 +91,13 @@ void Xwindow::drawFrame(const vector<string>& frame) {
   XImage* image = XGetImage(d, w, 0, 0, width, height, AllPlanes, 1);
   for (int y = 0; y < height; ++y) {
     for (int x = 0; x < width; ++x) {
-      char pixel = frame[y][x];
+      colour pixel = frame[y][x];
       
       // Optimization
       if (lastFrame[y][x] == pixel) continue;
       lastFrame[y][x] = pixel;
 
-      if (pixel == '#') {
-        XPutPixel(image, x, y, colours[0]);
-      } else if (pixel == ' ') {
-        XPutPixel(image, x, y, colours[1]);
-      }
+      XPutPixel(image, x, y, colours[pixel]);
     }
   }
   XPutImage(d, w, gc, image, 0, 0, 0, 0, width, height);

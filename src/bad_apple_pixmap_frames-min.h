@@ -1,7 +1,6 @@
-#ifndef __BAD_APPLE_PIXMAP_MIN__
-#define __BAD_APPLE_PIXMAP_MIN__
+#ifndef __BAD_APPLE_PIXMAP_H__
+#define __BAD_APPLE_PIXMAP_H__
 
-#include <vector>
 
 #include "display/frames/frame0001_pixmap.h"
 #include "display/frames/frame0002_pixmap.h"
@@ -504,11 +503,15 @@
 #include "display/frames/frame0499_pixmap.h"
 #include "display/frames/frame0500_pixmap.h"
 
-static const int NUM_FRAMES = 500;
-static const int FRAME_HEIGHT = 720;
-static const int FRAME_WIDTH = 960;
+#define NUM_FRAMES_H 500
+#define FRAME_HEIGHT_H 720
+#define FRAME_WIDTH_H 960
 
-static const std::vector<const char**> bad_apple_frames = {
+static const int NUM_FRAMES = NUM_FRAMES_H;
+static const int FRAME_HEIGHT = FRAME_HEIGHT_H;
+static const int FRAME_WIDTH = FRAME_WIDTH_H;
+
+static const colour[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H] = {
     frame0001,
     frame0002,
     frame0003,

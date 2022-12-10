@@ -3,20 +3,22 @@
 
 #include <vector>
 #include <string>
+#include "colours.h"
+#include "../bad_apple_pixmap_frames-min.h"
 
 class Video {
-    std::vector<std::vector<std::string>> frameList;
+    std::vector<std::vector<std::vector<colour>>> frameList;
     const int frameWidth;
     const int frameHeight;
     int currentFrame;
     public:
-        Video(const std::vector<const char**> &frames, int numFrames, int height, int width);
+        Video(const colour &frames[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H], int numFrames, int height, int width);
 
         // getters
         int getFrameWidth() const;
         int getFrameHeight() const;
         int frameNum() const;
-        const std::vector<std::string>& getCurrentFrame() const;
+        const std::vector<std::vector<colour>>& getCurrentFrame() const;
 
         // operator overload
         Video& operator++();

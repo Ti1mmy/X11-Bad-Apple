@@ -1,14 +1,18 @@
 #include "video.h"
 using namespace std;
 
-Video::Video(const vector<const char**>& frames, int numFrames, int height, int width):
+Video::Video(const colour &frames[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H], int numFrames, int height, int width):
             frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < numFrames; ++i) {
-                    vector<string> temp;
+                    vector<colour> temp1;
                     for (int j = 0; j < height; ++j) {
-                        temp.emplace_back(frames[i][j]);
+                        vector<colour> temp2;
+                        for (int k = 0; k < width; ++k) {
+                            temp2.emplace_back(frames[i][j][k]);
+                        }
+                        temp1.emplace_back(move(temp2));
                     }
-                    frameList.emplace_back(move(temp));
+                    frameList.emplace_back(move(temp1));
                 }
             }
 
@@ -18,7 +22,7 @@ int Video::getFrameHeight() const { return frameHeight; }
 
 int Video::frameNum() const { return currentFrame; }
 
-const vector<string>& Video::getCurrentFrame() const { return frameList[currentFrame]; }
+const vector<vector<colour>>& Video::getCurrentFrame() const { return frameList[currentFrame]; }
 
 Video& Video::operator++() {
     ++currentFrame;

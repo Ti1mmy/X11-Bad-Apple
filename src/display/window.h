@@ -1,6 +1,7 @@
 #ifndef __WINDOW_H__
 #define __WINDOW_H__
 #include <X11/Xlib.h>
+#include "colours.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -13,7 +14,7 @@ class Xwindow {
   std::vector<unsigned long> colours;
   const int width;
   const int height;
-  std::vector<std::string> lastFrame;
+  std::vector<std::vector<colour>> lastFrame;
   
  public:
   Xwindow(int width=500, int height=500);  // Constructor; displays the window.
@@ -23,7 +24,7 @@ class Xwindow {
 
   // Draws a bitmap
   // [This thing is fast] - Whenever draw calls need to be done, they should ideally be using this
-  void drawFrame(const std::vector<std::string>& frame);
+  void drawFrame(const std::vector<std::vector<colour>>& frame);
 
 };
 
