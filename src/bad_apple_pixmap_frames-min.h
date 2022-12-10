@@ -508,7 +508,7 @@ static const int NUM_FRAMES = 500;
 static const int FRAME_HEIGHT = 720;
 static const int FRAME_WIDTH = 960;
 
-static const std::vector<char**> bad_apple_frames = {
+static std::vector<const char**> bad_apple_frames = {
     frame0001,
     frame0002,
     frame0003,
