@@ -1,7 +1,6 @@
 #!/bin/python3
 from pixelator import Pixelator
 from PIL import Image, ImageOps
-from os import remove
 from io import BytesIO
 from numpy import frombuffer
 from cv2 import imdecode
@@ -25,7 +24,7 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
     memory_buffer = BytesIO()
     png_masked.save(memory_buffer, format='png')
     memory_buffer.seek(0)
-    # print(memory_buffer.getvalue())
+
     img_data = frombuffer(memory_buffer.getvalue(), dtype='uint8')
     img = Pixelator(data=imdecode(img_data, 1))
     pixelated_img = img.pixelate(
@@ -56,11 +55,4 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
         out.write('#endif\n')
         out.close()
 
-        #print(pixelated_img.data)
-        #pixelated_img.write(filename=f'./out/{image.split(".")[0]}_pixelated_80x80.png', height=80, width=80)
-            
-        # Comment this line out if you want to see what the masked image looks like
-        # In particular, could be useful if you decide to use it to bitmap-ify 
-        # other assets/videos
-        remove(f'./out/{out_filename}_temp_masked.png')
         memory_buffer.close()
