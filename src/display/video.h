@@ -11,7 +11,8 @@ class Video {
     int currentFrame;
     public:
         Video(const std::vector<const std::vector<std::string>*> &frames, int numFrames, int height, int width);
-
+        ~Video();
+        
         // getters
         int getFrameWidth() const;
         int getFrameHeight() const;

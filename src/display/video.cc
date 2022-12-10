@@ -8,6 +8,10 @@ Video::Video(const vector<const vector<string>*> &frames, int numFrames, int hei
             }
         }
 
+Video::~Video() {
+    for (auto frame: frameList) delete frame;
+}
+
 int Video::getFrameWidth() const { return frameWidth; }
 
 int Video::getFrameHeight() const { return frameHeight; }
