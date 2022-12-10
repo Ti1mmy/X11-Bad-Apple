@@ -10,7 +10,7 @@ class Video {
     const int frameHeight;
     int currentFrame;
     public:
-        Video(char** frames[500], int numFrames, int height, int width);
+        Video(char frames[500][720][961], int numFrames, int height, int width);
 
         // getters
         int getFrameWidth() const;
