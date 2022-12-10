@@ -15,7 +15,8 @@ Xwindow::Xwindow(int width, int height): width{width}, height{height} {
   for (int i = 0; i < width; ++i) {
     black += '#';
   };
-  lastFrame.resize(height, copy(black));
+  cout << black << endl;
+  lastFrame.resize(height, black);
 
   d = XOpenDisplay(NULL);
   if (d == NULL) {
