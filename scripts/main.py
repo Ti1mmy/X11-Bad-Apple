@@ -27,13 +27,15 @@ def main():
         f.write("#ifndef __BAD_APPLE_PIXMAP__\n")
         f.write("#define __BAD_APPLE_PIXMAP__\n")
         f.write("\n")
-        f.write("#include <string>\n")
-        f.write("#include <vector>\n")
         f.write("\n")
         for image in IMAGES:
             f.write(f'#include "frames/display/{image.split(".")[0]}_pixmap.h"\n')
         f.write("\n")
-        f.write("static const std::vector<std::vector<std::string>> bad_apple_frames = {\n")
+        f.write(f"static const int NUM_FRAMES = {len(IMAGES)};\n")
+        f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
+        f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[1]};\n")
+        f.write("\n")
+        f.write(f"static const char bad_apple_frames[{len(IMAGES)}][{PIXELART_RESOLUTION[1]}][{PIXELART_RESOLUTION[0] + 1}] " "= {\n")
         for image in IMAGES:
             f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")

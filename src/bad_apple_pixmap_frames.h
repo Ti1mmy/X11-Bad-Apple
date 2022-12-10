@@ -1,9 +1,6 @@
 #ifndef __BAD_APPLE_PIXMAP__
 #define __BAD_APPLE_PIXMAP__
 
-#include <vector>
-#include <string>
-
 #include "display/frames/frame0001_pixmap.h"
 #include "display/frames/frame0002_pixmap.h"
 #include "display/frames/frame0003_pixmap.h"
@@ -6579,8 +6576,9 @@
 
 static const int NUM_FRAMES = 4572;
 static const int FRAME_HEIGHT = 720;
+static const int FRAME_WIDTH = 960;
 
-static const std::string bad_apple_frames[4572][720] = {
+static const char bad_apple_frames[4572][720][961] = {
     frame0001,
     frame0002,
     frame0003,
