@@ -53,6 +53,8 @@
 #include "display/frames/frame0049_pixmap.h"
 #include "display/frames/frame0050_pixmap.h"
 
+#include "display/colours.h"
+
 inline constexpr int NUM_FRAMES_H = 50;
 inline constexpr int FRAME_HEIGHT_H = 720;
 inline constexpr int FRAME_WIDTH_H = 960;
@@ -61,7 +63,7 @@ static const int NUM_FRAMES = NUM_FRAMES_H;
 static const int FRAME_HEIGHT = FRAME_HEIGHT_H;
 static const int FRAME_WIDTH = FRAME_WIDTH_H;
 
-static const colour[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H] = {
+static const colour bad_apple_frames[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H] = {
     frame0001,
     frame0002,
     frame0003,
