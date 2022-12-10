@@ -5,12 +5,12 @@
 #include <string>
 #include <memory>
 class Video {
-    std::vector<std::unique_ptr<std::vector<std::string>>> frameList;
+    std::vector<const std::vector<std::string>*> frameList;
     const int frameWidth;
     const int frameHeight;
     int currentFrame;
     public:
-        Video(const std::vector<const char**> &frames, int numFrames, int height, int width);
+        Video(const std::vector<const std::vector<std::string>*> &frames, int numFrames, int height, int width);
 
         // getters
         int getFrameWidth() const;

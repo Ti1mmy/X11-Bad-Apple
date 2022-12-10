@@ -1,16 +1,12 @@
 #include "video.h"
 using namespace std;
 
-Video::Video(const vector<const char**>& frames, int numFrames, int height, int width):
+Video::Video(const vector<const vector<string>*> &frames, int numFrames, int height, int width):
             frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < numFrames; ++i) {
-                    unique_ptr<vector<string>> temp = make_unique<vector<string>>();
-                    for (int j = 0; j < height; ++j) {
-                        temp->emplace_back(frames[i][j]);
-                    }
-                    frameList.emplace_back(move(temp));
-                }
+                    frameList.emplace_back(frames[i]);
             }
+        }
 
 int Video::getFrameWidth() const { return frameWidth; }
 
