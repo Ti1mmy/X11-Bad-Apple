@@ -16,17 +16,19 @@ PALETTE_dict = {
 
 # We will thread all of our image calls to make_bitmap to run at once
 def main():
-    # with Pool(processes=cpu_count()) as task_pool:
-    #     print("Starting to make bitmaps... (This might take a while)")
-    #     for image in IMAGES:
-    #         task_pool.apply_async(make_bitmap, args=(f'{PNG_PATH}/{image}', PIXELART_RESOLUTION[0], PIXELART_RESOLUTION[1], PALETTE_dict, PADDING))
-    #     task_pool.close()
-    #     task_pool.join()
+    with Pool(processes=cpu_count()) as task_pool:
+        print("Starting to make bitmaps... (This might take a while)")
+        for image in IMAGES:
+            task_pool.apply_async(make_bitmap, args=(f'{PNG_PATH}/{image}', PIXELART_RESOLUTION[0], PIXELART_RESOLUTION[1], PALETTE_dict, PADDING))
+        task_pool.close()
+        task_pool.join()
     
     with open("out/bad_apple_pixmap.h", "w") as f:
-        f.write("#ifndef __BAD_APPLE_PIXMAP__\n")
-        f.write("#define __BAD_APPLE_PIXMAP__\n")
+        f.write("#ifndef __BAD_APPLE_PIXMAP_H__\n")
+        f.write("#define __BAD_APPLE_PIXMAP_H__\n")
         f.write("\n")
+        f.write("\n")
+        f.write("#include <vector>\n")
         f.write("\n")
         for image in IMAGES:
             f.write(f'#include "frames/display/{image.split(".")[0]}_pixmap.h"\n')
@@ -35,7 +37,7 @@ def main():
         f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
         f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[1]};\n")
         f.write("\n")
-        f.write(f"static const char bad_apple_frames[{len(IMAGES)}][{PIXELART_RESOLUTION[1]}][{PIXELART_RESOLUTION[0] + 1}] " "= {\n")
+        f.write("static const std::vector<const char**> bad_apple_frames = {\n")
         for image in IMAGES:
             f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")
