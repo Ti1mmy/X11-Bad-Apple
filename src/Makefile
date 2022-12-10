@@ -9,7 +9,7 @@ DEPENDS = ${OBJECTS:.o=.d}
 
 ${PROGRAM}: ${OBJECTS}
 	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${PROGRAM} -lX11
-#rm ${OBJECTS} ${DEPENDS}
+rm ${OBJECTS} ${DEPENDS}
 
 -include ${DEPENDS}
 
