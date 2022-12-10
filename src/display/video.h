@@ -5,7 +5,7 @@
 #include <string>
 #include <memory>
 class Video {
-    std::vector<const std::vector<std::string>*> frameList;
+    const std::vector<const std::vector<std::string>*>* frameList;
     const int frameWidth;
     const int frameHeight;
     int currentFrame;
