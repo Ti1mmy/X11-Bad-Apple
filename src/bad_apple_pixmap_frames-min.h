@@ -53,9 +53,9 @@
 #include "display/frames/frame0049_pixmap.h"
 #include "display/frames/frame0050_pixmap.h"
 
-inline constexpr NUM_FRAMES_H 50
-inline constexpr FRAME_HEIGHT_H 720
-inline constexpr FRAME_WIDTH_H 960
+inline constexpr int NUM_FRAMES_H = 50;
+inline constexpr int FRAME_HEIGHT_H = 720;
+inline constexpr int FRAME_WIDTH_H = 960;
 
 static const int NUM_FRAMES = NUM_FRAMES_H;
 static const int FRAME_HEIGHT = FRAME_HEIGHT_H;
