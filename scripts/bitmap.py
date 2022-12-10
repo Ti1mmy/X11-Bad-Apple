@@ -41,8 +41,12 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
         out.write(f'#ifndef __{out_filename.upper()}_PIXMAP_H__\n')
         out.write(f'#define __{out_filename.upper()}_PIXMAP_H__\n\n')
         out.write("\n")
+        out.write("#include <vector>\n")
+        out.write("#include <string>\n")
+        out.write("\n")
+        out.write("\n")
         # Define the pixmap
-        out.write(f'static const char* {out_filename}[{pixelart_resolution[1]}] = ' + '{\n')
+        out.write(f'static const std::vector<const std::string>* {out_filename} = ' + 'new std::vector<const std::string> {\n')
         for horizontal_line in pixelated_img.data:
             line = []
             for pixel in horizontal_line:

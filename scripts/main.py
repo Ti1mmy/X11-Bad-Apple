@@ -29,6 +29,7 @@ def main():
         f.write("\n")
         f.write("\n")
         f.write("#include <vector>\n")
+        f.write("#include <string>\n")
         f.write("\n")
         for image in IMAGES:
             f.write(f'#include "display/frames/{image.split(".")[0]}_pixmap.h"\n')
@@ -37,7 +38,7 @@ def main():
         f.write(f"static const int FRAME_HEIGHT = {PIXELART_RESOLUTION[0]};\n")
         f.write(f"static const int FRAME_WIDTH = {PIXELART_RESOLUTION[1]};\n")
         f.write("\n")
-        f.write("static const std::vector<const char**> bad_apple_frames = {\n")
+        f.write("static const std::vector<const std::vector<std::string>*> bad_apple_frames = {\n")
         for image in IMAGES:
             f.write(f"    {image.split('.')[0]},\n")
         f.write("};\n")
