@@ -1,7 +1,7 @@
 #include "video.h"
 using namespace std;
 
-Video::Video(const colour frames[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H], int numFrames, int height, int width):
+Video::Video(const colour* frames[NUM_FRAMES_H][FRAME_HEIGHT_H], int numFrames, int height, int width):
             frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < numFrames; ++i) {
                     vector<colour> temp1;
