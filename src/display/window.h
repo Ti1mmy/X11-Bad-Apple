@@ -23,7 +23,7 @@ class Xwindow {
 
   // Draws a bitmap
   // [This thing is fast] - Whenever draw calls need to be done, they should ideally be using this
-  void drawFrame(const std::vector<std::string>& frame);
+  void drawFrame(std::vector<std::string>& frame);
 
 };
 

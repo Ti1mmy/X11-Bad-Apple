@@ -83,7 +83,7 @@ Xwindow::~Xwindow() {
   XCloseDisplay(d);
 }
 
-void Xwindow::drawFrame(const vector<string>& frame) {
+void Xwindow::drawFrame(vector<string>& frame) {
   // Extensively used documentation from this website:
   // https://tronche.com/gui/x/xlib/graphics/XGetImage.html
 
