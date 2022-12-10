@@ -12,7 +12,7 @@ class Video {
     const int frameHeight;
     int currentFrame;
     public:
-        Video(const colour &frames[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H], int numFrames, int height, int width);
+        Video(const colour frames[NUM_FRAMES_H][FRAME_HEIGHT_H][FRAME_WIDTH_H], int numFrames, int height, int width);
 
         // getters
         int getFrameWidth() const;
