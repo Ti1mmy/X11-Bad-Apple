@@ -16,12 +16,12 @@ PALETTE_dict = {
 
 # We will thread all of our image calls to make_bitmap to run at once
 def main():
-    # with Pool(processes=cpu_count()) as task_pool:
-    #     print("Starting to make bitmaps... (This might take a while)")
-    #     for image in IMAGES:
-    #         task_pool.apply_async(make_bitmap, args=(f'{PNG_PATH}/{image}', PIXELART_RESOLUTION[0], PIXELART_RESOLUTION[1], PALETTE_dict, PADDING))
-    #     task_pool.close()
-    #     task_pool.join()
+    with Pool(processes=cpu_count()) as task_pool:
+        print("Starting to make bitmaps... (This might take a while)")
+        for image in IMAGES:
+            task_pool.apply_async(make_bitmap, args=(f'{PNG_PATH}/{image}', PIXELART_RESOLUTION[0], PIXELART_RESOLUTION[1], PALETTE_dict, PADDING))
+        task_pool.close()
+        task_pool.join()
     
     with open("out/bad_apple_pixmap.h", "w") as f:
         f.write("#ifndef __BAD_APPLE_PIXMAP__\n")

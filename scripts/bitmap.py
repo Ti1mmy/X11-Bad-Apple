@@ -1,8 +1,10 @@
 #!/bin/python3
 from pixelator import Pixelator
 from PIL import Image, ImageOps
-import os 
-import numpy as np
+from os import remove
+from io import BytesIO
+from numpy import frombuffer
+from cv2 import imdecode
 
 def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padding=0) -> None:
     
@@ -19,9 +21,13 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
 
     # Should do nearest resample to prevent dithering
     png_masked = png_masked.resize(pixelart_resolution, resample=Image.NEAREST)
-    png_masked.save(f'./out/{filename.split(".")[0]}_temp_masked.png')
-
-    img = Pixelator(filename=f'./out/{filename.split(".")[0]}_temp_masked.png')
+    
+    memory_buffer = BytesIO()
+    png_masked.save(memory_buffer, format='png')
+    memory_buffer.seek(0)
+    # print(memory_buffer.getvalue())
+    img_data = frombuffer(memory_buffer.getvalue(), dtype='uint8')
+    img = Pixelator(data=imdecode(img_data, 1))
     pixelated_img = img.pixelate(
         width = pixelart_resolution[0],
         height = pixelart_resolution[1],
@@ -56,4 +62,5 @@ def make_bitmap(filename: str, width: int, height: int, palette_dict: dict, padd
         # Comment this line out if you want to see what the masked image looks like
         # In particular, could be useful if you decide to use it to bitmap-ify 
         # other assets/videos
-        os.remove(f'./out/{out_filename}_temp_masked.png')
+        remove(f'./out/{out_filename}_temp_masked.png')
+        memory_buffer.close()
