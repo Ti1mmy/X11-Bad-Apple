@@ -3,8 +3,10 @@ Bad Apple!! using X11 Graphics. Written in C++
 
 ## Demo (Realtime)
 ![Demp](./demo.gif)
+
 Demo run on local linux server with 30ms frame-to-frame delay.
 *(if running on a remote server, you may want to remove this delay)*
+
 ## Usage
 
 ```bash
