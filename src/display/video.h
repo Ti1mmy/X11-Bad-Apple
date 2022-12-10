@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <string>
-
+#include <memory>
 class Video {
-    std::vector<std::vector<std::string>> frameList;
+    std::vector<std::unique_ptr<std::vector<std::string>>> frameList;
     const int frameWidth;
     const int frameHeight;
     int currentFrame;

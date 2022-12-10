@@ -4,9 +4,9 @@ using namespace std;
 Video::Video(const vector<const char**>& frames, int numFrames, int height, int width):
             frameWidth{width}, frameHeight{height}, currentFrame{0} {
                 for (int i = 0; i < numFrames; ++i) {
-                    vector<string> temp;
+                    unique_ptr<vector<string>> temp = make_unique<vector<string>>();
                     for (int j = 0; j < height; ++j) {
-                        temp.emplace_back(frames[i][j]);
+                        temp->emplace_back(frames[i][j]);
                     }
                     frameList.emplace_back(move(temp));
                 }
@@ -18,7 +18,7 @@ int Video::getFrameHeight() const { return frameHeight; }
 
 int Video::frameNum() const { return currentFrame; }
 
-const vector<string>& Video::getCurrentFrame() const { return frameList[currentFrame]; }
+const vector<string>& Video::getCurrentFrame() const { return *(frameList[currentFrame]); }
 
 Video& Video::operator++() {
     ++currentFrame;
